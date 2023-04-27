@@ -9,6 +9,7 @@ defineProps(["siteTitle"]);
 </template>
 
 <style scoped>
+/* TODO: Move to CSS files */
 #page-footer {
   font-weight: bold;
   text-align: center;

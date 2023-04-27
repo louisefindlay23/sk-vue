@@ -1,3 +1,4 @@
+// TODO: Convert to route resolver
 export function linkResolver(document) {
   switch (document.type) {
     case "posts":

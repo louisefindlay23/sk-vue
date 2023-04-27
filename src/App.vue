@@ -1,4 +1,6 @@
 <script setup>
+// TODO: Try to use Levi's folder structure to import multiple components
+import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import {
   useAllPrismicDocumentsByType,
@@ -6,12 +8,13 @@ import {
 } from "@prismicio/vue";
 const { data: home } = useSinglePrismicDocument("home");
 const { data: posts } = useAllPrismicDocumentsByType("posts");
+const siteTitle = "The Sock Kingdom";
 </script>
 
 <template>
-  <header>
-    <h1>Site</h1>
-  </header>
+  <!-- TODO: Try to add Layout component -->
+  <!-- TODO: Add pages -->
+  <Header :siteTitle="`${siteTitle}`" />
   <main id="page-content" v-if="home">
     <PrismicRichText :field="home.data.overview_text" />
   </main>
@@ -29,7 +32,7 @@ const { data: posts } = useAllPrismicDocumentsByType("posts");
       </div>
     </article>
   </div>
-  <Footer siteTitle="The Sock Kingdom" />
+  <Footer :siteTitle="`${siteTitle}`" />
 </template>
 
 <style scoped>
