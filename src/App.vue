@@ -1,4 +1,5 @@
 <script setup>
+import Footer from "./components/Footer.vue";
 import {
   useAllPrismicDocumentsByType,
   useSinglePrismicDocument,
@@ -28,6 +29,7 @@ const { data: posts } = useAllPrismicDocumentsByType("posts");
       </div>
     </article>
   </div>
+  <Footer siteTitle="The Sock Kingdom" />
 </template>
 
 <style scoped>
@@ -43,11 +45,5 @@ nav ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
-}
-
-/* Page Footer Styles */
-#page-footer {
-  font-weight: bold;
-  text-align: center;
 }
 </style>
