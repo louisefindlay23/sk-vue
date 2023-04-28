@@ -1,7 +1,5 @@
 <script setup>
 import { useRouter } from "vue-router";
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 import * as prismicH from "@prismicio/helpers";
 import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 import pigLatin from "https://cdn.skypack.dev/piglatin";
@@ -9,7 +7,6 @@ import { usePrismicDocumentByUID } from "@prismicio/vue";
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: post } = usePrismicDocumentByUID("posts", uid);
-const siteTitle = "The Sock Kingdom";
 const htmlSerializer = {
   heading2: ({ children }) => `${pigLatin(children)}`,
   label: ({ node, children }) =>
@@ -18,7 +15,6 @@ const htmlSerializer = {
 </script>
 
 <template>
-  <Header :siteTitle="`${siteTitle}`" />
   <article v-if="post">
     <header id="post-meta">
       <h2>
@@ -43,6 +39,7 @@ const htmlSerializer = {
     </main>
     <footer id="box-container" v-if="post.data.author_profiles">
       <h3>Authors</h3>
+      <!-- TODO: Fix authors rendering -->
       <div
         v-for="author in post.data.author_profiles"
         :key="JSON.stringify(author.author_name)"
@@ -61,5 +58,4 @@ const htmlSerializer = {
       );
     </footer>
   </article>
-  <Footer :siteTitle="`${siteTitle}`" />
 </template>
