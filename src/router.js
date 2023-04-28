@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
 import Page from "./views/Page.vue";
+import Post from "./views/Post.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -10,6 +11,10 @@ const router = createRouter({
     {
       path: "/post",
       redirect: "/",
+    },
+    {
+      path: "/post/:uid",
+      component: Post,
     },
   ],
 });

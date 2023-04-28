@@ -3,11 +3,9 @@ import { useRouter } from "vue-router";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
-import * as prismicH from "@prismicio/helpers";
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: page } = usePrismicDocumentByUID("pages", uid);
-console.info(page);
 const siteTitle = "The Sock Kingdom";
 </script>
 
@@ -24,19 +22,3 @@ const siteTitle = "The Sock Kingdom";
   </article>
   <Footer :siteTitle="`${siteTitle}`" />
 </template>
-
-<style scoped>
-/* Page Header Styles */
-#page-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 5px solid #000000;
-}
-
-/* Nav Styles */
-nav ul {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-}
-</style>

@@ -1,0 +1,54 @@
+<script setup>
+import { useRouter } from "vue-router";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
+import * as prismicH from "@prismicio/helpers";
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
+import pigLatin from "https://cdn.skypack.dev/piglatin";
+import { usePrismicDocumentByUID } from "@prismicio/vue";
+const route = useRouter();
+const uid = route.currentRoute.value.params.uid;
+const { data: post } = usePrismicDocumentByUID("posts", uid);
+const siteTitle = "The Sock Kingdom";
+</script>
+
+<template>
+  <Header :siteTitle="`${siteTitle}`" />
+  <article v-if="post">
+    <header id="post-meta">
+      <h2>
+        {{ prismicH.asText(post.data.post_title) }}
+      </h2>
+      <time
+        :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
+      >
+        {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
+      </time>
+      <PrismicImage :field="post.data.cover_image" />
+    </header>
+    <main id="post-content">
+      <PrismicRichText :field="post.data.post_content" />
+      <PrismicRichText :field="post.data.code_snippet" />
+    </main>
+    <footer id="box-container" v-if="post.data.author_profiles">
+      <h3>Authors</h3>
+      <div
+        v-for="author in post.data.author_profiles"
+        :key="JSON.stringify(author.author_name)"
+      >
+        <div class="box-content">
+          <PrismicRichText :field="author.author_name" />
+          <PrismicRichText :field="author.author_bio" />
+          <a :href="author.author_website_link.url">
+            {{ prismicH.asText(author.author_website_text) }}
+          </a>
+        </div>
+        <div class="box-image">
+          <PrismicImage :field="author.author_image" />
+        </div>
+      </div>
+      );
+    </footer>
+  </article>
+  <Footer :siteTitle="`${siteTitle}`" />
+</template>
