@@ -1,5 +1,6 @@
 <script setup>
 defineProps(["siteTitle"]);
+import Navigation from "./Navigation.vue";
 </script>
 
 <template>
@@ -7,7 +8,7 @@ defineProps(["siteTitle"]);
     <a href="/">
       <h1>{{ siteTitle }}</h1>
     </a>
-    <!-- TODO: Add Navigation component -->
+    <Navigation />
   </header>
 </template>
 
