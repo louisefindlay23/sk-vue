@@ -10,6 +10,11 @@ const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: post } = usePrismicDocumentByUID("posts", uid);
 const siteTitle = "The Sock Kingdom";
+const htmlSerializer = {
+  heading2: ({ children }) => `${pigLatin(children)}`,
+  label: ({ node, children }) =>
+    `<code label=${node.data.label}>${children}</code>`,
+};
 </script>
 
 <template>
@@ -17,7 +22,7 @@ const siteTitle = "The Sock Kingdom";
   <article v-if="post">
     <header id="post-meta">
       <h2>
-        {{ prismicH.asText(post.data.post_title) }}
+        {{ prismicH.asHTML(post.data.post_title, null, htmlSerializer) }}
       </h2>
       <time
         :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
@@ -28,7 +33,10 @@ const siteTitle = "The Sock Kingdom";
     </header>
     <main id="post-content">
       <PrismicRichText :field="post.data.post_content" />
-      <PrismicRichText :field="post.data.code_snippet" />
+      <PrismicRichText
+        :field="post.data.code_snippet"
+        :components="htmlSerializer"
+      />
     </main>
     <footer id="box-container" v-if="post.data.author_profiles">
       <h3>Authors</h3>
