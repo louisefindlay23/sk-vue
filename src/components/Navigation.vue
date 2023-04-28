@@ -1,4 +1,3 @@
-<!-- TODO: Add Vue Router -->
 <script setup>
 import { useSinglePrismicDocument } from "@prismicio/vue";
 const { data: navigationMenu } = useSinglePrismicDocument("navigation");

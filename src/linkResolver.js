@@ -6,6 +6,6 @@ export function linkResolver(document) {
     case "home":
       return "/";
     case "pages":
-      return "/:uid";
+      return "/" + document.uid;
   }
 }
