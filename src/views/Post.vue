@@ -29,7 +29,10 @@ const htmlSerializer = {
       >
         {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
       </time>
-      <PrismicImage :field="post.data.cover_image" />
+      <PrismicImage
+        :field="post.data.cover_image"
+        :imgix-params="{ duotone: ['black', 'white'] }"
+      />
     </header>
     <main id="post-content">
       <PrismicRichText :field="post.data.post_content" />
