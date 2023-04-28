@@ -1,6 +1,7 @@
 <script setup>
 defineProps(["siteTitle"]);
 import Navigation from "./Navigation.vue";
+import "./Header.css";
 </script>
 
 <template>
@@ -11,12 +12,3 @@ import Navigation from "./Navigation.vue";
     <Navigation />
   </header>
 </template>
-
-<style scoped>
-/* Page Header Styles */
-#page-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 5px solid #000000;
-}
-</style>

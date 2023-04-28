@@ -18,12 +18,3 @@ import * as prismicH from "@prismicio/helpers";
     </ul>
   </nav>
 </template>
-
-<style scoped>
-/* Nav Styles */
-nav ul {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-}
-</style>
