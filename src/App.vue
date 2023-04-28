@@ -2,6 +2,8 @@
 // TODO: Try to use Levi's folder structure to import multiple components
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import * as prismicH from "@prismicio/helpers";
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 import {
   useAllPrismicDocumentsByType,
   useSinglePrismicDocument,
@@ -24,7 +26,10 @@ const siteTitle = "The Sock Kingdom";
         <a :href="`/post/${post.uid}`">
           <PrismicRichText :field="post.data.post_title" />
         </a>
-        <time dateTime=""></time>
+        <time
+          :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
+        ></time>
+        {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
         <PrismicRichText :field="post.data.post_content.slice(0, 1)" />
       </div>
       <div class="box-image">
