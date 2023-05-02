@@ -2,11 +2,15 @@
 import { useRouter } from "vue-router";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
+
 import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 import pigLatin from "https://cdn.skypack.dev/piglatin";
+
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
+
 const { data: post } = usePrismicDocumentByUID("posts", uid);
+
 const htmlSerializer = {
   heading2: ({ children }) => `${pigLatin(children)}`,
   label: ({ node, children }) =>

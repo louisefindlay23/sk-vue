@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
+
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: page } = usePrismicDocumentByUID("pages", uid);

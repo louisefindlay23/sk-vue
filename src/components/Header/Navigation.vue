@@ -1,6 +1,7 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 import { useSinglePrismicDocument } from "@prismicio/vue";
+
 const { data: navigationMenu } = useSinglePrismicDocument("navigation");
 </script>
 

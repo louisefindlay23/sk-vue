@@ -4,7 +4,9 @@ import {
   useSinglePrismicDocument,
 } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
+
 import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
+
 const { data: home } = useSinglePrismicDocument("home");
 const { data: posts } = useAllPrismicDocumentsByType("posts");
 </script>
