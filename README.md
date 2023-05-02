@@ -14,4 +14,4 @@ Two Vite plugins were used to add extra functionality. `vite-plugin-pages` adds 
 
 ### Screenshot
 
-![The Sock Kingdom Website Screenshot](https://user-images.githubusercontent.com/26024131/223968443-4571a4b3-c2fd-4558-8017-7561b87cf499.png)
+![The Sock Kingdom Website Screenshot](https://user-images.githubusercontent.com/26024131/235723307-a083f70f-8458-41d6-97b6-b2610448a94c.png)
