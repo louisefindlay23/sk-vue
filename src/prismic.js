@@ -1,9 +1,18 @@
 import { createPrismic } from "@prismicio/vue";
-import { linkResolver } from "./linkResolver";
+
+const routes = [
+  { type: "posts", path: "/posts/:uid" },
+  { type: "home", path: "/" },
+  { type: "pages", path: "/:uid" },
+];
 
 const prismic = createPrismic({
   endpoint: "onboarding-content-management",
-  linkResolver,
+  clientConfig: {
+    routes,
+  },
 });
+
+console.info(prismic.client.routes);
 
 export default prismic;
