@@ -12,7 +12,7 @@ export default {
     return { siteTitle };
   },
 };
-import "./assets/main.css";
+import "./main.css";
 </script>
 
 <template>

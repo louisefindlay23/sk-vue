@@ -1,7 +1,7 @@
 <script setup>
 import Navigation from "./Navigation.vue";
-import "./Header.css";
 defineProps(["siteTitle"]);
+import "./Header.css";
 </script>
 
 <template>
