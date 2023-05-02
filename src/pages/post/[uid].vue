@@ -58,7 +58,6 @@ const htmlSerializer = {
           <PrismicImage :field="author.author_image" />
         </div>
       </div>
-      );
     </footer>
   </article>
 </template>
