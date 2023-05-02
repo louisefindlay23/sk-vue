@@ -1,29 +1,17 @@
-# sk-vue
+## The Sock Kingdom - A Vue Prismic Site
 
-This template should help get you started developing with Vue 3 in Vite.
+### Purpose
 
-## Recommended IDE Setup
+Develop a basic website using Prismic and Vue 3 that uses Vue Router and Route Resolver to create a dynamic Navigation menu.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### About the website
 
-## Customize configuration
+The Sock Kingdom website contains three blog posts about buying socks which are displayed on the homepage. The HTML serializer was used to render `h2` elements as Pig Latin via the [`piglatin`](https://github.com/montanaflynn/piglatin) module and code snippet field as a `code` element via the codespan custom label.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+The blog post content was generated via [ChatGPT](https://openai.com/blog/chatgpt) and author profiles using [AI Writer](https://tools.picsart.com/text/ai-writer). All blog post images were taken from [Unsplash](https://unsplash.com).
 
-## Project Setup
+Two Vite plugins were used to add extra functionality. `vite-plugin-pages` adds support for file system routing and `vite-plugin-webfont-dl` improved performance of importing Google Fonts.
 
-```sh
-npm install
-```
+### Screenshot
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+![The Sock Kingdom Website Screenshot](https://user-images.githubusercontent.com/26024131/223968443-4571a4b3-c2fd-4558-8017-7561b87cf499.png)
