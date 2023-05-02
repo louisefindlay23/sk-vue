@@ -14,6 +14,7 @@ const { data: posts } = useAllPrismicDocumentsByType("posts");
     <PrismicRichText :field="home.data.overview_text" />
   </main>
   <div id="box-container">
+    <h3 v-if="posts">Posts</h3>
     <article v-for="post in posts" :key="JSON.stringify(post.data)">
       <div class="box-content">
         <a :href="`/post/${post.uid}`">
@@ -21,8 +22,10 @@ const { data: posts } = useAllPrismicDocumentsByType("posts");
         </a>
         <time
           :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
-        ></time>
-        {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
+          >{{
+            format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy")
+          }}</time
+        >
         <PrismicRichText :field="post.data.post_content.slice(0, 1)" />
       </div>
       <div class="box-image">

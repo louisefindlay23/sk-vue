@@ -37,11 +37,10 @@ const htmlSerializer = {
         :components="htmlSerializer"
       />
     </main>
-    <footer id="box-container" v-if="post.data.author_profiles">
+    <footer id="box-container" v-if="post.data.author_profile">
       <h3>Authors</h3>
-      <!-- TODO: Fix authors rendering -->
       <div
-        v-for="author in post.data.author_profiles"
+        v-for="author in post.data.author_profile"
         :key="JSON.stringify(author.author_name)"
       >
         <div class="box-content">
