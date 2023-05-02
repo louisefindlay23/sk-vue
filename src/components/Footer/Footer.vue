@@ -1,6 +1,6 @@
 <script setup>
-defineProps(["siteTitle"]);
 import Footer from "./Footer.css";
+defineProps(["siteTitle"]);
 </script>
 
 <template>

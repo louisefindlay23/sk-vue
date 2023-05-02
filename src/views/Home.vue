@@ -1,17 +1,15 @@
 <script setup>
-// TODO: Try to use Levi's folder structure to import multiple components
-import * as prismicH from "@prismicio/helpers";
-import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 import {
   useAllPrismicDocumentsByType,
   useSinglePrismicDocument,
 } from "@prismicio/vue";
+import * as prismicH from "@prismicio/helpers";
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 const { data: home } = useSinglePrismicDocument("home");
 const { data: posts } = useAllPrismicDocumentsByType("posts");
 </script>
 
 <template>
-  <!-- TODO: Try to add Layout component -->
   <main id="page-content" v-if="home">
     <PrismicRichText :field="home.data.overview_text" />
   </main>
