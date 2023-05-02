@@ -13,6 +13,4 @@ const prismic = createPrismic({
   },
 });
 
-console.info(prismic.client.routes);
-
 export default prismic;
