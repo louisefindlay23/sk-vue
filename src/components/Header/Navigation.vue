@@ -8,7 +8,7 @@ import styles from "./Header.module.css";
 <template>
   <nav>
     <ul v-if="navigationMenu" :class="styles.navList">
-      <li v-for="link in navigationMenu.data.menu" :key="JSON.stringify(link))">
+      <li v-for="link in navigationMenu.data.menu" :key="JSON.stringify(link)">
         <PrismicLink :field="link.link_url">
           {{ prismicH.asText(link.link_text) }}
         </PrismicLink>
