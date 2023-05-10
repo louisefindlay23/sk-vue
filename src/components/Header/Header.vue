@@ -1,12 +1,11 @@
 <script setup>
 import Navigation from "./Navigation.vue";
+import styles from "./Header.module.css";
 defineProps(["siteTitle"]);
-
-import "./Header.css";
 </script>
 
 <template>
-  <header id="page-header">
+  <header :class="styles.pageHeader">
     <a href="/">
       <h1>{{ siteTitle }}</h1>
     </a>

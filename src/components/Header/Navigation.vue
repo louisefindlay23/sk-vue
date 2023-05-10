@@ -1,13 +1,13 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 import { useSinglePrismicDocument } from "@prismicio/vue";
-
 const { data: navigationMenu } = useSinglePrismicDocument("navigation");
+import styles from "./Header.module.css";
 </script>
 
 <template>
   <nav>
-    <ul v-if="navigationMenu">
+    <ul v-if="navigationMenu" :class="styles.navList">
       <li
         v-for="link in navigationMenu.data.menu"
         :key="JSON.stringify(link.link_text)"

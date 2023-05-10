@@ -1,12 +1,12 @@
 /* Page Header Styles */
-#page-header {
+.pageHeader {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 5px solid #000000;
 }
 
 /* Nav Styles */
-nav ul {
+.navList {
   display: flex;
   justify-content: space-around;
   list-style-type: none;

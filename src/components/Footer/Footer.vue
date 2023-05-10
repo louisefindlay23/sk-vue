@@ -1,18 +1,6 @@
-<script>
+<script setup>
 import styles from "./Footer.module.css";
-export default {
-  props: {
-    siteTitle: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      styles,
-    };
-  },
-};
+defineProps(["siteTitle"]);
 </script>
 
 <template>
@@ -21,4 +9,6 @@ export default {
   </footer>
 </template>
 
-<style module></style>
+<style module>
+/* Empty style block required for CSS modules */
+</style>
