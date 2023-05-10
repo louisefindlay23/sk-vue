@@ -2,8 +2,7 @@
 import { useRouter } from "vue-router";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
-
-import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
+import Date from "../../components/Date/Date.vue";
 import pigLatin from "https://cdn.skypack.dev/piglatin";
 
 const route = useRouter();
@@ -24,11 +23,7 @@ const htmlSerializer = {
       <h2>
         {{ prismicH.asHTML(post.data.post_title, null, htmlSerializer) }}
       </h2>
-      <time
-        :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
-      >
-        {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
-      </time>
+      <Date :postDate="post.first_publication_date" />
       <PrismicImage
         :field="post.data.cover_image"
         :imgix-params="{ duotone: ['black', 'white'] }"

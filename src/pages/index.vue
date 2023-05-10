@@ -3,10 +3,7 @@ import {
   useAllPrismicDocumentsByType,
   useSinglePrismicDocument,
 } from "@prismicio/vue";
-import * as prismicH from "@prismicio/helpers";
-
-import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
-
+import Date from "../components/Date/Date.vue";
 const { data: home } = useSinglePrismicDocument("home");
 const { data: posts } = useAllPrismicDocumentsByType("posts");
 </script>
@@ -22,12 +19,7 @@ const { data: posts } = useAllPrismicDocumentsByType("posts");
         <a :href="`/post/${post.uid}`">
           <PrismicRichText :field="post.data.post_title" />
         </a>
-        <time
-          :dateTime="prismicH.asDate(post.first_publication_date).toISOString()"
-          >{{
-            format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy")
-          }}</time
-        >
+        <Date :postDate="post.first_publication_date" />
         <PrismicRichText :field="post.data.post_content.slice(0, 1)" />
       </div>
       <div class="box-image">
