@@ -63,8 +63,8 @@ time {
   margin-bottom: 2rem;
 }
 
-#box-container > h2,
-#box-container > h3 {
+#box-container > section > h2,
+#box-container > section > h3 {
   margin-top: 2rem;
   text-align: center;
 }
