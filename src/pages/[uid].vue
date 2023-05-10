@@ -5,20 +5,30 @@ import { usePrismicDocumentByUID } from "@prismicio/vue";
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: page } = usePrismicDocumentByUID("pages", uid);
-import * as prismicH from "@prismicio/helpers";
+import { defineSliceZoneComponents } from "@prismicio/vue";
+import HeadingSlice from "../components/slices/Heading/Heading.vue";
+import ImageSlice from "../components/slices/Image/Image.vue";
+import TextSlice from "../components/slices/Text/Text.vue";
 </script>
 
 <template>
+  <SliceZone
+    :slices="page.data.body"
+    :components="
+      defineSliceZoneComponents({
+        heading: HeadingSlice,
+        image: ImageSlice,
+        text: TextSlice,
+      })
+    "
+  />
   <article v-if="page">
     <header id="post-meta">
-      <PrismicRichText
-        v-if="prismicH.isFilled.richText(page.data.page_title)"
-        :field="page.data.page_title"
-      />
-      <PrismicImage :field="page.data.cover_image" />
+      <HeadingSlice />
+      <ImageSlice />
     </header>
     <main id="page-content">
-      <PrismicRichText :field="page.data.page_text" />
+      <TextSlice />
     </main>
   </article>
 </template>
