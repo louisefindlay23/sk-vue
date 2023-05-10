@@ -40,7 +40,7 @@ const htmlSerializer = {
       <h3>Authors</h3>
       <div
         v-for="author in post.data.author_profile"
-        :key="JSON.stringify(author.author_name)"
+        :key="JSON.stringify(author)"
       >
         <div class="box-content">
           <PrismicRichText :field="author.author_name" />
