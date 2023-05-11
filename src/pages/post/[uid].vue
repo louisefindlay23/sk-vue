@@ -24,6 +24,8 @@ import HeadingSlice from "../../components/slices/Heading/Heading.vue";
 import ImageSlice from "../../components/slices/Image/Image.vue";
 import TextSlice from "../../components/slices/Text/Text.vue";
 import CodeSlice from "../../components/slices/Code/Code.vue";
+
+import styles from "./Post.module.css"
 </script>
 
 <template>
@@ -40,17 +42,17 @@ import CodeSlice from "../../components/slices/Code/Code.vue";
       "
     />
   </article>
-  <footer id="box-container">
+  <footer :class="styles.boxContainer">
     <h3>Authors</h3>
     <div v-if="post">
-      <!-- <div class="box-content">
+      <!-- <div :class="styles.boxContent" >
         <PrismicRichText :field="post.data.author_document.data.author_name" />
         <PrismicRichText :field="post.data.author_document.data.author_bio" />
         <a :href="post.data.author_document.data.author_website_link.url">
           {{ prismicH.asText(post.data.author_document.data.author_website_text) }}
         </a>
       </div>
-      <div class="box-image">
+      <div :class="styles.boxImage">
         <PrismicImage :field="post.data.author_document.data.author_image" />
       </div>-->
     </div>
