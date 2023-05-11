@@ -1,3 +1,4 @@
+// Page route
 <script setup>
 import { useRouter } from "vue-router";
 
@@ -7,6 +8,7 @@ import HeadingSlice from "../components/slices/Heading/Heading.vue";
 import ImageSlice from "../components/slices/Image/Image.vue";
 import TextSlice from "../components/slices/Text/Text.vue";
 
+// Get uid parameter from url
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 

@@ -7,10 +7,13 @@ import { format } from "date-fns";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
+
 const { data: post } = usePrismicDocumentByUID("posts", uid);
+
 defineProps(["postDate"]);
 </script>
 <template>
+  <!-- If post page, use post's publication date. If recent posts slice, use postDate prop.  -->
   <time v-if="post" :dateTime="prismicH.asDate(post.first_publication_date).toISOString()">
     {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
   </time>

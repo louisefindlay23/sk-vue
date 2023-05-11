@@ -6,7 +6,6 @@ import * as prismicH from "@prismicio/helpers";
 
 import styles from "./Image.module.css";
 
-// The array passed to `getSliceComponentProps` is purely optional and acts as a visual hint for you
 const props = defineProps(
   getSliceComponentProps(["slice", "index", "slices", "context"])
 );
@@ -15,6 +14,7 @@ let imgixParams = null;
 
 onMounted(() => {
   const { slice } = props;
+  // Select file for Imgix transformations
   if (slice.primary.image_transformations === "blackWhite") {
     imgixParams = { duotone: ['black', 'white'] };
   }
