@@ -3,7 +3,6 @@ import { useRouter } from "vue-router";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
 import Date from "../../components/Date/Date.vue";
-import pigLatin from "https://cdn.skypack.dev/piglatin";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
@@ -15,26 +14,34 @@ const htmlSerializer = {
   label: ({ node, children }) =>
     `<code label=${node.data.label}>${children}</code>`,
 };
+import { defineSliceZoneComponents } from "@prismicio/vue";
+import HeadingSlice from "../../components/slices/Heading/Heading.vue";
+import ImageSlice from "../../components/slices/Image/Image.vue";
+import TextSlice from "../../components/slices/Text/Text.vue";
+import CodeSlice from "../../components/slices/Code/Code.vue";
 </script>
 
 <template>
+  <SliceZone
+    :slices="post.data.body"
+    :components="
+      defineSliceZoneComponents({
+        heading: HeadingSlice,
+        image: ImageSlice,
+        text: TextSlice,
+        code: CodeSlice,
+      })
+    "
+  />
   <article v-if="post">
     <header id="post-meta">
-      <h2>
-        {{ prismicH.asHTML(post.data.post_title, null, htmlSerializer) }}
-      </h2>
+      <HeadingSlice />
       <Date :postDate="post.first_publication_date" />
-      <PrismicImage
-        :field="post.data.cover_image"
-        :imgix-params="{ duotone: ['black', 'white'] }"
-      />
+      <ImageSlice :imgix-params="{ duotone: ['black', 'white'] }" />
     </header>
     <main id="post-content">
-      <PrismicRichText :field="post.data.post_content" />
-      <PrismicRichText
-        :field="post.data.code_snippet"
-        :components="htmlSerializer"
-      />
+      <TextSlice />
+      <CodeSlice />
     </main>
     <footer id="box-container" v-if="post.data.author_profile">
       <h3>Authors</h3>

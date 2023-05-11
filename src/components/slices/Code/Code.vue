@@ -1,18 +1,14 @@
 <script setup>
 import { getSliceComponentProps } from "@prismicio/vue";
-import pigLatin from "https://cdn.skypack.dev/piglatin";
 
 // The array passed to `getSliceComponentProps` is purely optional and acts as a visual hint for you
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
-
 const htmlSerializer = {
-  heading2: ({ children }) => `<h2>${pigLatin(children)}</h2>`,
+  label: ({ node, children }) =>
+    `<code label=${node.data.label}>${children}</code>`,
 };
 </script>
 
 <template>
-  <PrismicRichText
-    :field="slice.primary.heading"
-    :htmlSerializer="htmlSerializer"
-  />
+  <PrismicRichText :field="slice.primary.code" :components="htmlSerializer" />
 </template>
