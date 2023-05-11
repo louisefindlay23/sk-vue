@@ -1,8 +1,10 @@
 <script setup>
 import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
-import { format } from "date-fns";
+
 import { useRouter } from "vue-router";
+import { format } from "date-fns";
+
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 const { data: post } = usePrismicDocumentByUID("posts", uid);

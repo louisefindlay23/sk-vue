@@ -1,13 +1,15 @@
 <script setup>
-import { getSliceComponentProps } from "@prismicio/vue";
+import { getSliceComponentProps, usePrismicDocumentsByType } from "@prismicio/vue";
+
+import Date from "../../../components/Date/Date.vue";
+import styles from "./RecentPosts.module.css"
+
 // The array passed to `getSliceComponentProps` is purely optional and acts as a visual hint for you
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
-import { usePrismicDocumentsByType } from "@prismicio/vue";
+
 const { data: posts } = usePrismicDocumentsByType("posts", {
   pageSize: 3,
 });
-import Date from "../../../components/Date/Date.vue";
-import styles from "./RecentPosts.module.css"
 </script>
 
 <template>

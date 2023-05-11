@@ -1,10 +1,19 @@
 <script setup>
 import { useRouter } from "vue-router";
-import { usePrismicDocumentByUID } from "@prismicio/vue";
+
+import { defineSliceZoneComponents, usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
+
+import HeadingSlice from "../../components/slices/Heading/Heading.vue";
+import ImageSlice from "../../components/slices/Image/Image.vue";
+import TextSlice from "../../components/slices/Text/Text.vue";
+import CodeSlice from "../../components/slices/Code/Code.vue";
+
+import styles from "./Post.module.css"
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
+
 const { data: post } = usePrismicDocumentByUID("posts", uid,
 /* , {
   graphQuery: `{
@@ -18,14 +27,6 @@ const { data: post } = usePrismicDocumentByUID("posts", uid,
 /* { fetchLinks: ["authors.author_profile", "authors.author_profile.author_image", "authors.author_profile.author_bio", "authors.author_profile.author_website_link", "authors.author_profile.author_website.text"] } */
 
 console.info(post);
-
-import { defineSliceZoneComponents } from "@prismicio/vue";
-import HeadingSlice from "../../components/slices/Heading/Heading.vue";
-import ImageSlice from "../../components/slices/Image/Image.vue";
-import TextSlice from "../../components/slices/Text/Text.vue";
-import CodeSlice from "../../components/slices/Code/Code.vue";
-
-import styles from "./Post.module.css"
 </script>
 
 <template>

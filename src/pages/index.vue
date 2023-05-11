@@ -1,9 +1,10 @@
 <script setup>
-import { useSinglePrismicDocument } from "@prismicio/vue";
-const { data: home } = useSinglePrismicDocument("home");
+import { defineSliceZoneComponents, useSinglePrismicDocument } from "@prismicio/vue";
+
 import TextSlice from "../components/slices/Text/Text.vue";
 import RecentPostsSlice from "../components/slices/RecentPosts/RecentPosts.vue";
-import { defineSliceZoneComponents } from "@prismicio/vue";
+
+const { data: home } = useSinglePrismicDocument("home");
 </script>
 
 <template>

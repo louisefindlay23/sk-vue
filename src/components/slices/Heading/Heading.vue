@@ -1,9 +1,8 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import { getSliceComponentProps } from "@prismicio/vue";
 import pigLatin from "https://cdn.skypack.dev/piglatin";
 import Date from "../../Date/Date.vue";
-import { ref, onMounted } from "vue";
-
 // The array passed to `getSliceComponentProps` is purely optional and acts as a visual hint for you
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 

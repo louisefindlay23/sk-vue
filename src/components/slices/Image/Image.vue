@@ -1,16 +1,17 @@
 <script setup>
+import { onMounted } from "vue";
+
 import { getSliceComponentProps, PrismicRichText } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
+
+import styles from "./Image.module.css";
 
 // The array passed to `getSliceComponentProps` is purely optional and acts as a visual hint for you
 const props = defineProps(
   getSliceComponentProps(["slice", "index", "slices", "context"])
 );
-import { onMounted } from "vue";
 
 let imgixParams = null;
-
-import styles from "./Image.module.css";
 
 onMounted(() => {
   const { slice } = props;

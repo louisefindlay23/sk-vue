@@ -1,8 +1,8 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 import { useSinglePrismicDocument } from "@prismicio/vue";
-const { data: navigationMenu } = useSinglePrismicDocument("navigation");
 import styles from "./Header.module.css";
+const { data: navigationMenu } = useSinglePrismicDocument("navigation");
 </script>
 
 <template>
