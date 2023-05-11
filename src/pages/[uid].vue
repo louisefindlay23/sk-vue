@@ -12,23 +12,16 @@ import TextSlice from "../components/slices/Text/Text.vue";
 </script>
 
 <template>
-  <SliceZone
-    :slices="page.data.body"
-    :components="
-      defineSliceZoneComponents({
-        heading: HeadingSlice,
-        image: ImageSlice,
-        text: TextSlice,
-      })
-    "
-  />
-  <article v-if="page">
-    <header id="post-meta">
-      <HeadingSlice />
-      <ImageSlice />
-    </header>
-    <main id="page-content">
-      <TextSlice />
-    </main>
-  </article>
+  <main v-if="page" class="page">
+    <SliceZone
+      :slices="page.data.body"
+      :components="
+        defineSliceZoneComponents({
+          heading: HeadingSlice,
+          image: ImageSlice,
+          text: TextSlice,
+        })
+      "
+    />
+  </main>
 </template>

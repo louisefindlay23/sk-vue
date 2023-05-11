@@ -2,7 +2,6 @@
 import { useRouter } from "vue-router";
 import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
-import Date from "../../components/Date/Date.vue";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
@@ -22,44 +21,35 @@ import CodeSlice from "../../components/slices/Code/Code.vue";
 </script>
 
 <template>
-  <SliceZone
-    :slices="post.data.body"
-    :components="
-      defineSliceZoneComponents({
-        heading: HeadingSlice,
-        image: ImageSlice,
-        text: TextSlice,
-        code: CodeSlice,
-      })
-    "
-  />
   <article v-if="post">
-    <header id="post-meta">
-      <HeadingSlice />
-      <Date :postDate="post.first_publication_date" />
-      <ImageSlice :imgix-params="{ duotone: ['black', 'white'] }" />
-    </header>
-    <main id="post-content">
-      <TextSlice />
-      <CodeSlice />
-    </main>
-    <footer id="box-container" v-if="post.data.author_profile">
-      <h3>Authors</h3>
-      <div
-        v-for="author in post.data.author_profile"
-        :key="JSON.stringify(author)"
-      >
-        <div class="box-content">
-          <PrismicRichText :field="author.author_name" />
-          <PrismicRichText :field="author.author_bio" />
-          <a :href="author.author_website_link.url">
-            {{ prismicH.asText(author.author_website_text) }}
-          </a>
-        </div>
-        <div class="box-image">
-          <PrismicImage :field="author.author_image" />
-        </div>
-      </div>
-    </footer>
+    <SliceZone
+      :slices="post.data.body"
+      :components="
+        defineSliceZoneComponents({
+          heading: HeadingSlice,
+          image: ImageSlice,
+          text: TextSlice,
+          code: CodeSlice,
+        })
+      "
+    />
   </article>
+  <footer id="box-container" v-if="post.data.author_profile">
+    <h3>Authors</h3>
+    <div
+      v-for="author in post.data.author_profile"
+      :key="JSON.stringify(author)"
+    >
+      <div class="box-content">
+        <PrismicRichText :field="author.author_name" />
+        <PrismicRichText :field="author.author_bio" />
+        <a :href="author.author_website_link.url">
+          {{ prismicH.asText(author.author_website_text) }}
+        </a>
+      </div>
+      <div class="box-image">
+        <PrismicImage :field="author.author_image" />
+      </div>
+    </div>
+  </footer>
 </template>

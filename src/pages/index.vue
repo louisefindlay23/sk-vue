@@ -7,15 +7,15 @@ import { defineSliceZoneComponents } from "@prismicio/vue";
 </script>
 
 <template>
-  <SliceZone
-    :slices="home.data.body"
-    :components="
-      defineSliceZoneComponents({
-        text: TextSlice,
-        recent_posts: RecentPostsSlice,
-      })
-    "
-  />
-  <TextSlice />
-  <RecentPostsSlice />
+  <main v-if="home">
+    <SliceZone
+      :slices="home.data.body"
+      :components="
+        defineSliceZoneComponents({
+          text: TextSlice,
+          recent_posts: RecentPostsSlice,
+        })
+      "
+    />
+  </main>
 </template>

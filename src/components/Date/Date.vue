@@ -1,10 +1,14 @@
 <script setup>
+import { usePrismicDocumentByUID } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
 import { format } from "date-fns";
-defineProps(["postDate"]);
+import { useRouter } from "vue-router";
+const route = useRouter();
+const uid = route.currentRoute.value.params.uid;
+const { data: post } = usePrismicDocumentByUID("posts", uid);
 </script>
 <template>
-  <time :dateTime="prismicH.asDate(postDate).toISOString()">{{
-    format(prismicH.asDate(postDate), "dd/MM/yyyy")
-  }}</time>
+  <time :dateTime="prismicH.asDate(post.first_publication_date).toISOString()">
+    {{ format(prismicH.asDate(post.first_publication_date), "dd/MM/yyyy") }}
+  </time>
 </template>
