@@ -10,6 +10,8 @@ import { onMounted } from "vue";
 
 let imgixParams = null;
 
+import styles from "./Image.module.css";
+
 onMounted(() => {
   const { slice } = props;
   if (slice.primary.image_transformations === "blackWhite") {
@@ -20,7 +22,11 @@ onMounted(() => {
 
 <template>
   <PrismicImage
-    :field="slice.primary.image"
+  :class="styles.featuredImage" :field="slice.primary.image"
     :imgix-params="imgixParams"
   />
 </template>
+
+<style module>
+/* Empty style block required for CSS modules */
+</style>

@@ -5,7 +5,17 @@ import * as prismicH from "@prismicio/helpers";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
-const { data: post } = usePrismicDocumentByUID("posts", uid, { fetchLinks: ["authors.author_name", , "authors.author_image", "authors.author_bio", "authors.author_website_link", "authors.author_website.text"] });
+const { data: post } = usePrismicDocumentByUID("posts", uid,
+/* , {
+  graphQuery: `{
+      post {
+        author_relationship
+      }
+    }` 
+  });*/
+)
+
+/* { fetchLinks: ["authors.author_profile", "authors.author_profile.author_image", "authors.author_profile.author_bio", "authors.author_profile.author_website_link", "authors.author_profile.author_website.text"] } */
 
 console.info(post);
 
@@ -33,7 +43,7 @@ import CodeSlice from "../../components/slices/Code/Code.vue";
   <footer id="box-container">
     <h3>Authors</h3>
     <div v-if="post">
-      <div class="box-content">
+      <!-- <div class="box-content">
         <PrismicRichText :field="post.data.author_document.data.author_name" />
         <PrismicRichText :field="post.data.author_document.data.author_bio" />
         <a :href="post.data.author_document.data.author_website_link.url">
@@ -42,7 +52,7 @@ import CodeSlice from "../../components/slices/Code/Code.vue";
       </div>
       <div class="box-image">
         <PrismicImage :field="post.data.author_document.data.author_image" />
-      </div>
+      </div>-->
     </div>
   </footer>
 </template>
