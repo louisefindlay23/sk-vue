@@ -5,13 +5,10 @@ import * as prismicH from "@prismicio/helpers";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
-const { data: post } = usePrismicDocumentByUID("posts", uid);
+const { data: post } = usePrismicDocumentByUID("posts", uid, { fetchLinks: ["authors.author_name", , "authors.author_image", "authors.author_bio", "authors.author_website_link", "authors.author_website.text"] });
 
-const htmlSerializer = {
-  heading2: ({ children }) => `${pigLatin(children)}`,
-  label: ({ node, children }) =>
-    `<code label=${node.data.label}>${children}</code>`,
-};
+console.info(post);
+
 import { defineSliceZoneComponents } from "@prismicio/vue";
 import HeadingSlice from "../../components/slices/Heading/Heading.vue";
 import ImageSlice from "../../components/slices/Image/Image.vue";
@@ -33,21 +30,18 @@ import CodeSlice from "../../components/slices/Code/Code.vue";
       "
     />
   </article>
-  <footer id="box-container" v-if="post.data.author_profile">
+  <footer id="box-container">
     <h3>Authors</h3>
-    <div
-      v-for="author in post.data.author_profile"
-      :key="JSON.stringify(author)"
-    >
+    <div v-if="post">
       <div class="box-content">
-        <PrismicRichText :field="author.author_name" />
-        <PrismicRichText :field="author.author_bio" />
-        <a :href="author.author_website_link.url">
-          {{ prismicH.asText(author.author_website_text) }}
+        <PrismicRichText :field="post.data.author_document.data.author_name" />
+        <PrismicRichText :field="post.data.author_document.data.author_bio" />
+        <a :href="post.data.author_document.data.author_website_link.url">
+          {{ prismicH.asText(post.data.author_document.data.author_website_text) }}
         </a>
       </div>
       <div class="box-image">
-        <PrismicImage :field="author.author_image" />
+        <PrismicImage :field="post.data.author_document.data.author_image" />
       </div>
     </div>
   </footer>
