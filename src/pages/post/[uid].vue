@@ -5,7 +5,6 @@ import * as prismicH from "@prismicio/helpers";
 
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
-
 const { data: post } = usePrismicDocumentByUID("posts", uid);
 
 const htmlSerializer = {
