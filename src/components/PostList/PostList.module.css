@@ -46,8 +46,8 @@
 }
 
 .Pagination button {
-  padding: 1vw 3vw;
   margin-bottom: 2vw;
+  padding: 1vw 3vw;
 }
 
 .Pagination button:first-of-type {
