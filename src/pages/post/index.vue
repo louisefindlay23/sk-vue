@@ -1,12 +1,34 @@
 <script setup>
-import { usePrismicDocumentsByType } from "@prismicio/vue";
+import { ref, onMounted } from "vue";
+import { usePrismicDocumentsByType, usePrismic } from "@prismicio/vue";
+const { client } = usePrismic();
 // Limit recent post list to three posts
-const { data: posts } = usePrismicDocumentsByType("posts", {
-  pageSize: 2,
+let { data: initialPosts } = usePrismicDocumentsByType("posts", {
+  pageSize: 1,
 });
+
+const posts = ref(initialPosts);
+
 import Date from "../../components/Date/Date.vue";
 import styles from "../../components/slices/RecentPosts/RecentPosts.module.css";
-console.info(posts);
+
+function getPreviousPosts(prevPage) {
+  console.info(prevPage);
+}
+
+async function getNextPosts(nextPage) {
+  if (nextPage) {
+  await client.getByType("posts", {
+    pageSize: 1,
+    page: 2,
+  }).then((response) => {
+    console.info(response);
+    posts.value = response;
+  }).catch((err) => {
+    console.error(err);
+  });
+}
+}
 </script>
 
 <template>
@@ -33,5 +55,9 @@ console.info(posts);
         <PrismicImage :field="post.data.body[1].primary.image" />
       </div>
     </article>
+<div class="pagination">
+      <button @click="getPreviousPosts(posts.prev_page)">Previous</button>
+      <button @click="getNextPosts(posts.next_page)">Next</button>
+    </div>
   </div>
 </template>
