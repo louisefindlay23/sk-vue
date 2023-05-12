@@ -16,11 +16,11 @@ function getPreviousPosts(prevPage) {
   console.info(prevPage);
 }
 
-async function getNextPosts(nextPage) {
+async function getNextPosts(nextPage, page) {
   if (nextPage) {
   await client.getByType("posts", {
     pageSize: 1,
-    page: 2,
+    page: page + 1,
   }).then((response) => {
     console.info(response);
     posts.value = response;
@@ -56,8 +56,8 @@ async function getNextPosts(nextPage) {
       </div>
     </article>
 <div class="pagination">
-      <button @click="getPreviousPosts(posts.prev_page)">Previous</button>
-      <button @click="getNextPosts(posts.next_page)">Next</button>
+      <button @click="getPreviousPosts(posts.prev_page, posts.page)" :disabled="posts.page === 1">Previous</button>
+      <button @click="getNextPosts(posts.next_page, posts.page)" :disabled="posts.page === posts.total_pages">Next</button>
     </div>
   </div>
 </template>
