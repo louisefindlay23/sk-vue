@@ -11,7 +11,7 @@ let { data: initialPosts } = usePrismicDocumentsByType("posts", {
 const posts = ref(initialPosts);
 
 import Date from "../../components/Date/Date.vue";
-import styles from "../../components/slices/RecentPosts/RecentPosts.module.css";
+import styles from "./PostList.module.css";
 
 // Get the previous or next page of posts
 async function getPosts(page) {
@@ -50,7 +50,7 @@ async function getPosts(page) {
       </div>
     </article>
 <!-- Call getPosts function with next page or current page. Disable if no more pages. -->
-<div class="pagination">
+<div :class="styles.Pagination">
       <button @click="getPosts(posts.page - 1)" :disabled="posts.page === 1">Previous</button>
       <button @click="getPosts(posts.page + 1)" :disabled="posts.page === posts.total_pages">Next</button>
     </div>

@@ -12,12 +12,32 @@ body {
 
 h1,
 h2,
-h3 {
+h3, button {
   font-family: "Arvo", var(--system-fonts);
 }
 
 h1 {
   text-align: center;
+}
+
+button {
+  font-size: 1rem;
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #ccc;
+  color: #000000;
+  cursor: not-allowed;
 }
 
 li {
