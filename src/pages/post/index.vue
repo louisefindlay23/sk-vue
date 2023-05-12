@@ -12,22 +12,26 @@ const posts = ref(initialPosts);
 import Date from "../../components/Date/Date.vue";
 import styles from "../../components/slices/RecentPosts/RecentPosts.module.css";
 
-function getPreviousPosts(prevPage) {
-  console.info(prevPage);
-}
-
-async function getNextPosts(nextPage, page) {
-  if (nextPage) {
+async function getPreviousPosts(page) {
   await client.getByType("posts", {
     pageSize: 1,
-    page: page + 1,
+    page: page - 1,
   }).then((response) => {
-    console.info(response);
     posts.value = response;
   }).catch((err) => {
     console.error(err);
   });
 }
+
+async function getNextPosts(page) {
+  await client.getByType("posts", {
+    pageSize: 1,
+    page: page + 1,
+  }).then((response) => {
+    posts.value = response;
+  }).catch((err) => {
+    console.error(err);
+  });
 }
 </script>
 
@@ -56,8 +60,8 @@ async function getNextPosts(nextPage, page) {
       </div>
     </article>
 <div class="pagination">
-      <button @click="getPreviousPosts(posts.prev_page, posts.page)" :disabled="posts.page === 1">Previous</button>
-      <button @click="getNextPosts(posts.next_page, posts.page)" :disabled="posts.page === posts.total_pages">Next</button>
+      <button @click="getPreviousPosts(posts.page)" :disabled="posts.page === 1">Previous</button>
+      <button @click="getNextPosts(posts.page)" :disabled="posts.page === posts.total_pages">Next</button>
     </div>
   </div>
 </template>
