@@ -1,4 +1,9 @@
 <script>
+import { ref } from "vue";
+
+import { usePrismic } from "@prismicio/vue";
+import * as prismicH from "@prismicio/helpers";
+
 import Header from "./components/Header/Header.vue";
 import Footer from "./components/Footer/Footer.vue";
 
@@ -8,7 +13,13 @@ export default {
     Footer,
   },
   setup() {
-    const siteTitle = "The Sock Kingdom";
+    const siteTitle = ref(null);
+    const { client } = usePrismic();
+    client.getSingle("navigation").then((response) => {
+    siteTitle.value = prismicH.asText(response.data.site_title);
+  }).catch((err) => {
+    console.error(err);
+  });
     return { siteTitle };
   },
 };
