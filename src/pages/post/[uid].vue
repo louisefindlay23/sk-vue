@@ -32,6 +32,7 @@ console.info(post);
 
 <template>
   <article v-if="post">
+    <h2>Post</h2>
     <SliceZone
       :slices="post.data.body"
       :components="
