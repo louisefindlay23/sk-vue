@@ -8,7 +8,12 @@ import { format } from "date-fns";
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 
-const { data: post } = usePrismicDocumentByUID("posts", uid);
+let post = null;
+
+if (uid) {
+const { data: postData } = usePrismicDocumentByUID("posts", uid);
+post = postData;
+}
 
 defineProps(["postDate"]);
 </script>
