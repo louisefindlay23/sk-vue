@@ -27,10 +27,6 @@ async function getPosts(page) {
 </script>
 
 <template>
-  <div v-if="posts" :class="styles.boxContainer" >
-    <section>
-      <h2>Posts</h2>
-    </section>
     <!-- Iterate over paginated posts -->
     <article
       v-if="posts"
@@ -50,9 +46,8 @@ async function getPosts(page) {
       </div>
     </article>
 <!-- Call getPosts function with next page or current page. Disable if no more pages. -->
-<div :class="styles.Pagination">
+<div v-if="posts" :class="styles.Pagination">
       <button @click="getPosts(posts.page - 1)" :disabled="posts.page === 1">Previous</button>
       <button @click="getPosts(posts.page + 1)" :disabled="posts.page === posts.total_pages">Next</button>
     </div>
-  </div>
 </template>
