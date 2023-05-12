@@ -1,7 +1,8 @@
 <script setup>
+import { inject } from "vue";
 import Navigation from "./Navigation.vue";
 import styles from "./Header.module.css";
-defineProps(["siteTitle"]);
+const siteTitle = inject("siteTitle");
 </script>
 
 <template>

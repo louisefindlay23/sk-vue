@@ -1,6 +1,7 @@
 <script setup>
+import { inject } from "vue";
 import styles from "./Footer.module.css";
-defineProps(["siteTitle"]);
+const siteTitle = inject("siteTitle");
 </script>
 
 <template>

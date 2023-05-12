@@ -1,5 +1,5 @@
 <script>
-import { ref } from "vue";
+import { ref, provide } from "vue";
 
 import { usePrismic } from "@prismicio/vue";
 import * as prismicH from "@prismicio/helpers";
@@ -20,7 +20,7 @@ export default {
   }).catch((err) => {
     console.error(err);
   });
-    return { siteTitle };
+  provide("siteTitle", siteTitle);
   },
 };
 import "./main.css";
@@ -28,8 +28,8 @@ import "./main.css";
 
 <template>
   <div id="app">
-    <Header :siteTitle="siteTitle" />
+    <Header />
     <router-view />
-    <Footer :siteTitle="siteTitle" />
+    <Footer />
   </div>
 </template>
