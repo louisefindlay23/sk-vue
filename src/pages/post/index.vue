@@ -2,31 +2,22 @@
 import { ref, onMounted } from "vue";
 import { usePrismicDocumentsByType, usePrismic } from "@prismicio/vue";
 const { client } = usePrismic();
-// Limit recent post list to three posts
+// Get recent two posts
 let { data: initialPosts } = usePrismicDocumentsByType("posts", {
-  pageSize: 1,
+  pageSize: 2,
 });
 
+// Set posts value to recent posts
 const posts = ref(initialPosts);
 
 import Date from "../../components/Date/Date.vue";
 import styles from "../../components/slices/RecentPosts/RecentPosts.module.css";
 
-async function getPreviousPosts(page) {
+// Get the previous or next page of posts
+async function getPosts(page) {
   await client.getByType("posts", {
-    pageSize: 1,
-    page: page - 1,
-  }).then((response) => {
-    posts.value = response;
-  }).catch((err) => {
-    console.error(err);
-  });
-}
-
-async function getNextPosts(page) {
-  await client.getByType("posts", {
-    pageSize: 1,
-    page: page + 1,
+    pageSize: 2,
+    page: page,
   }).then((response) => {
     posts.value = response;
   }).catch((err) => {
@@ -39,8 +30,7 @@ async function getNextPosts(page) {
   <div v-if="posts" :class="styles.boxContainer" >
     <section>
       <h2>Posts</h2>
-      </section>
-    <!-- <PrismicRichText :field="post.data.post_heading" wrapper="section" /> -->
+    </section>
     <!-- Iterate over paginated posts -->
     <article
       v-if="posts"
@@ -60,8 +50,8 @@ async function getNextPosts(page) {
       </div>
     </article>
 <div class="pagination">
-      <button @click="getPreviousPosts(posts.page)" :disabled="posts.page === 1">Previous</button>
-      <button @click="getNextPosts(posts.page)" :disabled="posts.page === posts.total_pages">Next</button>
+      <button @click="getPosts(posts.page - 1)" :disabled="posts.page === 1">Previous</button>
+      <button @click="getPosts(posts.page + 1)" :disabled="posts.page === posts.total_pages">Next</button>
     </div>
   </div>
 </template>
