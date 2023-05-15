@@ -15,22 +15,13 @@ import styles from "./Post.module.css"
 const route = useRouter();
 const uid = route.currentRoute.value.params.uid;
 
+// Fetch author documents
 const { data: post } = usePrismicDocumentByUID("posts", uid,
-/* , {
-  graphQuery: `{
-      post {
-        author_relationship
-      }
-    }` 
-  });*/
-)
-
-/* { fetchLinks: ["authors.author_profile", "authors.author_profile.author_image", "authors.author_profile.author_bio", "authors.author_profile.author_website_link", "authors.author_profile.author_website.text"] } */
-
-console.info(post);
+{ fetchLinks: ["authors.author_profile", "authors.author_image", "authors.author_bio", "authors.author_website_link", "authors.author_website_text"] });
 </script>
 
 <template>
+  <div>
   <article v-if="post">
     <h2>Post</h2>
     <SliceZone
@@ -47,17 +38,19 @@ console.info(post);
   </article>
   <footer :class="styles.boxContainer">
     <h3>Authors</h3>
-    <div v-if="post">
-      <!-- <div :class="styles.boxContent" >
-        <PrismicRichText :field="post.data.author_document.data.author_name" />
-        <PrismicRichText :field="post.data.author_document.data.author_bio" />
-        <a :href="post.data.author_document.data.author_website_link.url">
-          {{ prismicH.asText(post.data.author_document.data.author_website_text) }}
+    <!-- Render linked authors from grouped content relationship -->
+    <div v-if="post" v-for="author in post.data.authors">
+      <div :class="styles.boxContent" >
+        <PrismicRichText :field="author.author_relationship.data.author_name" />
+        <PrismicRichText :field="author.author_relationship.data.author_bio" />
+        <a :href="author.author_relationship.data.author_website_link.url">
+          {{ prismicH.asText(author.author_relationship.data.author_website_text) }}
         </a>
       </div>
       <div :class="styles.boxImage">
-        <PrismicImage :field="post.data.author_document.data.author_image" />
-      </div>-->
+        <PrismicImage :field="author.author_relationship.data.author_image" />
+      </div>
     </div>
   </footer>
+</div>
 </template>

@@ -19,6 +19,10 @@
   margin-top: 2rem;
 }
 
+.boxContainer h3 {
+  text-align: center;
+}
+
 .boxContent {
   width: 50%;
 }

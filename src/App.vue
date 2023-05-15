@@ -13,6 +13,7 @@ export default {
     Footer,
   },
   setup() {
+    // Provide siteTitle from Navigation document to Header and footer components
     const siteTitle = ref(null);
     const { client } = usePrismic();
     client.getSingle("navigation").then((response) => {

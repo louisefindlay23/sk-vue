@@ -1,9 +1,9 @@
 import { createPrismic } from "@prismicio/vue";
 
 const routes = [
-  { type: "posts", path: "/posts/:uid" },
   { type: "home", path: "/" },
   { type: "pages", path: "/:uid" },
+  { type: "posts", path: "/posts/:uid" },
 ];
 
 const prismic = createPrismic({

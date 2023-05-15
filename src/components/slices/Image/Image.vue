@@ -1,8 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 
-import { getSliceComponentProps, PrismicRichText } from "@prismicio/vue";
-import * as prismicH from "@prismicio/helpers";
+import { getSliceComponentProps } from "@prismicio/vue";
 
 import styles from "./Image.module.css";
 
@@ -14,7 +13,7 @@ let imgixParams = null;
 
 onMounted(() => {
   const { slice } = props;
-  // Select file for Imgix transformations
+  // Select field for Imgix transformations
   if (slice.primary.image_transformations === "blackWhite") {
     imgixParams = { duotone: ['black', 'white'] };
   }
